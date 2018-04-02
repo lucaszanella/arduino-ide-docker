@@ -1,6 +1,8 @@
 FROM resin/rpi-raspbian:latest
 
-RUN apt-get update && apt-get install -y arduino tightvncserver
+RUN apt-get update && apt-get install -y arduino x11vnc xvfb firefox
+
+RUN mkdir ~/.vnc && x11vnc -storepasswd 1234 ~/.vnc/passwd
 
 # Replace 1000 with your user / group id
 RUN export uid=1000 gid=1000 && \
@@ -17,4 +19,4 @@ RUN mkdir /home/j/cloud
 
 USER j
 ENV HOME /home/j
-CMD tightvncserver & /usr/bin/arduino
+CMD x11vnc & /usr/bin/arduino
