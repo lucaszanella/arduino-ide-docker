@@ -1,6 +1,6 @@
-FROM ubuntu
+FROM resin:rpi-raspbian
 
-RUN apt-get update && apt-get install -y arduino
+RUN apt-get update && apt-get install -y arduino tightvncserver
 
 # Replace 1000 with your user / group id
 RUN export uid=1000 gid=1000 && \
@@ -17,4 +17,4 @@ RUN mkdir /home/j/cloud
 
 USER j
 ENV HOME /home/j
-CMD /usr/bin/arduino
+CMD tightvncserver & /usr/bin/arduino
