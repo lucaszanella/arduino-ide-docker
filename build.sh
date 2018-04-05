@@ -1,1 +1,1 @@
-docker build -t arduino .
+docker build -t arduino_docker .
