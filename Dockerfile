@@ -4,4 +4,6 @@ RUN apt-get update && apt-get install -y arduino x11vnc xvfb
 
 RUN mkdir ~/.vnc && x11vnc -storepasswd 1234 ~/.vnc/passwd
 
-CMD x11vnc -forever -usepw -create & /usr/bin/arduino
+ENV DISPLAY :1
+
+CMD /usr/bin/Xvfb :1 -screen 0 1366x768x16 & x11vnc -display :1 -forever -usepw -create & /usr/bin/arduino
